@@ -8,6 +8,10 @@ import type { NextRequest } from "next/server";
 export async function middleware(req: NextRequest) {
   let res = NextResponse.next();
 
+  if (req.nextUrl.pathname.endsWith(".svg")) {
+    return res;
+  }
+
   // Create a Supabase client configured to use cookies
   const supabase = createMiddlewareClient({ req, res });
 
