@@ -4,14 +4,16 @@ import { Database } from "../../../../database.types";
 import ScriptForm from "@/components/ScriptForm";
 
 export default async function DisplayScript({
-  params: { id: id },
+  params: { scriptId: id },
 }: {
-  params: { id: number };
+  params: { scriptId: string };
 }) {
   const cookieStore = cookies();
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore,
   });
+
+  console.log(id);
 
   const { data, error } = await supabase
     .from("Scripts")
@@ -24,14 +26,18 @@ export default async function DisplayScript({
 
   return (
     <>
-      <ScriptForm
-        script={{
-          id: data[0].id,
-          Title: data[0].Title,
-          Description: data[0].Description,
-          Content: data[0].Content,
-        }}
-      />
+      {data?.length > 0 ? (
+        <ScriptForm
+          script={{
+            id: data[0].id,
+            Title: data[0].Title,
+            Description: data[0].Description,
+            Content: data[0].Edits[0].Content,
+          }}
+        />
+      ) : (
+        <div>You don't have access</div>
+      )}
     </>
   );
 }
