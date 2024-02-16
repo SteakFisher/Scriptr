@@ -4,11 +4,18 @@ import { Database } from "../../../database.types";
 import { cookies } from "next/headers";
 import Link from "next/link";
 
-export default function Dashboard() {
+export default async function Dashboard() {
   const cookieStore = cookies();
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore,
   });
+
+  const { data } = await supabase
+    .from("Scripts")
+    .select("*")
+    .order("Created_at", { ascending: false });
+  console.log(data);
+
   return (
     <div className="flex justify-between mt-6">
       <div>

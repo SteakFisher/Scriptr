@@ -2,7 +2,6 @@
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "../../../../database.types";
 
@@ -53,7 +52,6 @@ export default function NewScript() {
         <button
           onClick={async (e) => {
             e.preventDefault();
-            console.log(content);
 
             let { data: scriptData } = await supabase
               .from("Scripts")
@@ -61,7 +59,7 @@ export default function NewScript() {
                 Title: content["Title"],
                 Description: content["Description"],
               })
-              .select("Id");
+              .select("id");
             console.log(scriptData);
             if (!scriptData) {
               console.log("Error creating script");
@@ -82,3 +80,16 @@ export default function NewScript() {
     </div>
   );
 }
+
+// CREATE POLICY "Individuals can view their own edits" ON public."Edits" FOR
+// SELECT
+// USING (
+//   auth.uid () = (
+//     SELECT
+// "Author"
+// FROM
+// public."Scripts"
+// WHERE
+// public."Scripts"."id" = public."Edits"."ScriptId"
+// )
+// );
