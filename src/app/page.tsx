@@ -22,7 +22,6 @@ export default function Login() {
           const { data } = await supabase.auth.signInWithOAuth({
             provider: "google",
           });
-          console.log(data);
         }}
       >
         {" "}
