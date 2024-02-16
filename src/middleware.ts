@@ -25,6 +25,7 @@ export async function middleware(req: NextRequest) {
   } else if (session && req.nextUrl.pathname == "/") {
     res = NextResponse.redirect(new URL("/dashboard", req.url));
   }
+  console.log(req.nextUrl.pathname);
 
   return res;
 }
