@@ -19,15 +19,6 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
           <Input
             type="text"
             onChange={(e) => {
-              script["id"] = e.target.value;
-            }}
-            defaultValue={script["id"] ? script["id"] : "id"}
-          />
-        </label>
-        <label>
-          <Input
-            type="text"
-            onChange={(e) => {
               script["Title"] = e.target.value;
             }}
             defaultValue={script["Title"] ? script["Title"] : "Title"}
