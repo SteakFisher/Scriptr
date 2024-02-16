@@ -27,7 +27,6 @@ export default function Login() {
         {" "}
         Login button{" "}
       </button>
-      <h1>Logout</h1>
     </div>
   );
 }
