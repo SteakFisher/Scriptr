@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import type { NextRequest } from "next/server";
 
+// supabase gen types typescript --project-id sanxrkhvjsvnkvrresut > database.types.ts
+
 export async function middleware(req: NextRequest) {
   let res = NextResponse.next();
 
