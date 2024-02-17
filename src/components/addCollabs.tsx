@@ -31,16 +31,20 @@ export default function AddCollabs({
       <DialogTrigger asChild>
         <Button variant="outline">Add Collaborators</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] hover:border-l-2 hover:border-r-2 hover:border-safeclr">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle
+            className={"text-blue-300 underline decoration-blue-300"}
+          >
+            Edit profile
+          </DialogTitle>
           <DialogDescription>
             {"Add collaborator emails [seperated by commas]"}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="email" className="text-right">
+            <Label htmlFor="email" className="text-right text-blue-300">
               Email
             </Label>
             <Input
@@ -55,6 +59,7 @@ export default function AddCollabs({
         </div>
         <DialogFooter>
           <Button
+            className={"bg-blue-300 font-bold"}
             type="submit"
             onClick={async () => {
               let emails = input.split(",");
