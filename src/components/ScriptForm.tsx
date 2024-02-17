@@ -8,6 +8,14 @@ import { useRouter } from "next/navigation";
 import { Database } from "../../database.types";
 import Link from "next/link";
 import React, { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function ScriptForm({ script }: { script: ScriptProps }) {
   const [newScriptTitle, setNewScriptTitle] = useState("");
@@ -24,7 +32,23 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
       >
         {newScriptTitle.length > 0 ? newScriptTitle : "New Script"}
       </h1>
-
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          className={
+            " border-2 border-red-500 px-3 py-2 rounded-md flex-auto items-end"
+          }
+        >
+          History
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>Billing</DropdownMenuItem>
+          <DropdownMenuItem>Team</DropdownMenuItem>
+          <DropdownMenuItem>Subscription</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
       <div className={"flex flex-row h-[80%] ml-1/8"}>
         <div className={"flex flex-col pb-[25%] ml-5"}>
           <Input
