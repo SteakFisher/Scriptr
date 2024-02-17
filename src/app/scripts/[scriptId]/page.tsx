@@ -58,6 +58,8 @@ export default async function DisplayScript({
               Description: data[0].Description,
               Content: Edits[0].Content,
             }}
+            save={false}
+            edits={Edits}
           />
         </div>
       ) : (

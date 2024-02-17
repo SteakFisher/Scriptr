@@ -79,11 +79,7 @@ export default function AddCollabs({
                 });
               });
 
-              console.log(newEmails);
-
               let { data } = await supabase.from("Sharing").insert(newEmails);
-
-              console.log(data);
             }}
           >
             Save changes

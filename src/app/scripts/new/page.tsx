@@ -1,7 +1,7 @@
 import ScriptForm from "@/components/ScriptForm";
 
 export default function NewScript() {
-  return <ScriptForm script={{}} />;
+  return <ScriptForm script={{}} save={true} />;
 }
 
 // CREATE POLICY "Individuals can view their own edits" ON public."Edits" FOR

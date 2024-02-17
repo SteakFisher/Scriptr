@@ -16,7 +16,7 @@ export default async function History({
 
   let { data } = await supabase
     .from("Edits")
-    .select("Content, Scripts(Title, Description)")
+    .select("Content, Updated_at, Scripts(Title, Description)")
     .eq("id", id);
 
   console.log(data);

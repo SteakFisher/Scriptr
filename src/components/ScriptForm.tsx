@@ -17,12 +17,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+type Edit = {
+  Content: string;
+  Updated_at: string;
+};
+
 export default function ScriptForm({
   script,
   save = false,
+  edits,
 }: {
   script: ScriptProps;
   save: boolean;
+  edits?: Edit[];
 }) {
   const [newScriptTitle, setNewScriptTitle] = useState(script["Title"]);
   const supabase = createClientComponentClient<Database>();
@@ -38,37 +45,39 @@ export default function ScriptForm({
       >
         {newScriptTitle ? newScriptTitle : "New Script"}
       </h1>
-      {/*History*/}
 
-      <DropdownMenu>
-        <DropdownMenuTrigger
-          className={
-            " border-2 border-cyan-800 px-2 py-2 text-gray-400 rounded-md ml-[90%] m-5 pt-1 pb-1 justify-center hover:border-cyan-500 hover:duration-200 hover:text-white"
-          }
-        >
-          History
-        </DropdownMenuTrigger>
+      {edits ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            className={
+              " border-2 border-cyan-800 px-2 py-2 text-gray-400 rounded-md ml-[90%] m-5 pt-1 pb-1 justify-center hover:border-cyan-500 hover:duration-200 hover:text-white"
+            }
+          >
+            History
+          </DropdownMenuTrigger>
 
-        <DropdownMenuContent
-          className={"w-96 mr-6 mt-4 border-2 border-cyan-500"}
-        >
-          <DropdownMenuLabel>Previous Changes</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href={"/dashboard"}>
-              <div className={"border-2 border-gray-800 p-4"}>
-                <h1 className={"text-xl text-orange-500 font-bold "}>Title</h1>
-                <h3 className={"text-blue-300"}>Date: </h3>
-                <h3 className={"text-blue-300"}>TIme: </h3>
-                <p className={"text-white"}>
-                  This contains the description of the Previous version of the
-                  Script
-                </p>
-              </div>
-            </Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          <DropdownMenuContent
+            className={"w-96 mr-6 mt-4 border-2 border-cyan-500"}
+          >
+            <DropdownMenuLabel>Previous Changes</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            {edits.map((edit) => {
+              return (
+                <DropdownMenuItem key={edit.Updated_at}>
+                  <Link href={"/dashboard"}>
+                    <div className={"border-2 border-gray-800 p-4"}>
+                      <h3 className={"text-blue-300"}>
+                        Date: {edit.Updated_at.split("T")[0]}
+                      </h3>
+                      <p className={"text-white"}>{edit["Content"]}</p>
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+              );
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : null}
       <div className={"flex flex-row h-[80%] ml-1/8"}>
         <div className={"flex flex-col pb-[25%] ml-5"}>
           <Input
