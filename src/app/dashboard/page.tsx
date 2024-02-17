@@ -42,43 +42,35 @@ export default async function Dashboard() {
       <div className={"flex px-20 py-4"}>
         <p className={"text-3xl"}> Edits </p>
       </div>
-
-      {data?.map((obj) => {
-        if (!obj.Created_at) {
-          obj.Created_at = "errorT";
-        }
-
-        return (
-          <div key={obj.id} className={"flex items-start"}>
-            <div className="card_3 w-full max-w-sm m-auto rounded-lg border-2 border-gray-900 hover:border-gray-700  duration-100  ">
-              <div className="card-header bg-gray-900 p-4">
-                <p className="text-sm text-gray-400">Date: </p>
-                <div>
-                  <h1>{obj.Created_at.split("T")[0]}</h1>
+      <div className={"flex flex-wrap"}>
+        {data?.map((obj, index) => {
+          if (!obj.Created_at) {
+            obj.Created_at = "errorT";
+          }
+          return (
+            <div key={obj.id} className={"ml-16 mt-10"}>
+              <div className="card_3 w-96 max-w-sm rounded-lg border-2 border-gray-900 hover:border-gray-700 hover:scale-105  duration-100 m-4 ">
+                <div className="card-header bg-gray-900 p-4">
+                  <p className="text-sm text-gray-400">
+                    Date: {obj.Created_at.split("T")[0]}{" "}
+                  </p>
+                  <p className="text-sm text-gray-400">
+                    Time: {obj.Created_at.split("T")[1].split(".")[0]}
+                  </p>
                 </div>
-                <p className="text-sm text-gray-400">
-                  Time:
-                  <div>
-                    <h1>{obj.Created_at.split("T")[1].split(".")[0]}</h1>
-                  </div>
-                </p>
-              </div>
 
-              <div className="card-body p-6 bg-gradient-to-r from-gray-900 h-auto border-s-2 border-emerald-400">
-                <p className="text-gray-700 mb-4">
-                  <p>{obj.Description}</p>
-                </p>
-              </div>
+                <div className="card-body p-6 bg-gradient-to-r from-gray-900 h-auto border-s-2 border-emerald-400">
+                  <p className="text-gray-700 mb-4">{obj.Description}</p>
+                </div>
 
-              <div className="card-footer bg-gradient-to-r from-gray-900 p-4">
-                <button className="button text-xl">
-                  <p>{obj.Title}</p>
-                </button>
+                <div className="card-footer bg-gradient-to-r from-gray-900 p-4">
+                  <button className="button text-xl">{obj.Title}</button>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }

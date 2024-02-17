@@ -34,7 +34,5 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel()
   })
 
-  return (
-
-  )
+  return ()
 }
