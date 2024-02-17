@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,13 +10,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import { Label } from "@/components/ui/label";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "../../database.types";
-import { createSupabaseClient } from "@supabase/auth-helpers-shared";
 
 export default function AddCollabs({
   emailList,
@@ -29,7 +27,12 @@ export default function AddCollabs({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className={"absolute mt-16 ml-5"}>
+        <Button
+          variant="outline"
+          className={
+            "absolute mt-20 ml-5 p-5 px-10 border-2 text-green-600 hover:border-green-600 hover:text-white"
+          }
+        >
           Add Collaborators
         </Button>
       </DialogTrigger>
