@@ -34,7 +34,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
             onChange={(e) => {
               script["Title"] = e.target.value;
             }}
-            defaultValue={script["Title"] ? script["Title"] : "Title"}
+            defaultValue={script["Title"] ? script["Title"] : undefined}
           />
         </label>
         <br />
@@ -45,7 +45,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
               script["Description"] = e.target.value;
             }}
             defaultValue={
-              script["Description"] ? script["Description"] : "Description"
+              script["Description"] ? script["Description"] : undefined
             }
           />
         </label>
@@ -55,7 +55,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
             onChange={(e) => {
               script["Content"] = e.target.value;
             }}
-            defaultValue={script["Content"] ? script["Content"] : "Content"}
+            defaultValue={script["Content"] ? script["Content"] : undefined}
           />
         </label>
         <br />
