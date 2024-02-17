@@ -32,6 +32,9 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
       >
         {newScriptTitle.length > 0 ? newScriptTitle : "New Script"}
       </h1>
+
+      {/*History*/}
+
       <DropdownMenu>
         <DropdownMenuTrigger
           className={
@@ -40,13 +43,21 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
         >
           History
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+
+        <DropdownMenuContent className={"w-auto"}>
+          <DropdownMenuLabel>Previous Changes</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
+          <DropdownMenuItem>
+            <div>
+              <h1 className={"text-xl"}>Title</h1>
+              <h3>Date:</h3>
+              <h3>TIme:</h3>
+              <p>
+                This contains the description of the Previous version of the
+                Script heloogtdbdxrgvtsdhdsgfcgvfd
+              </p>
+            </div>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <div className={"flex flex-row h-[80%] ml-1/8"}>
