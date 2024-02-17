@@ -2,16 +2,18 @@
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import Image from "next/image";
 
-export default function Login() {
+function Logging() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  if (searchParams.get("code")) {
-    router.refresh();
-  }
+  useEffect(() => {
+    if (searchParams.get("code")) {
+      router.refresh();
+    }
+  }, [router, searchParams]);
 
   const supabase = createClientComponentClient();
 
@@ -47,5 +49,13 @@ export default function Login() {
         </button>
       </div>
     </div>
+  );
+}
+
+export default function Login() {
+  return (
+    <Suspense>
+      <Logging />
+    </Suspense>
   );
 }

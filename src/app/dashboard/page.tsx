@@ -10,6 +10,15 @@ export default async function Dashboard() {
     cookies: () => cookieStore,
   });
 
+  let user = await supabase.auth.getUser();
+
+  if (user.data.user && user.data.user.id && user.data.user.email) {
+    const { data: userData } = await supabase
+      .from("Users")
+      .upsert({ Author: user.data.user?.id, Email: user.data.user?.email });
+    console.log(userData);
+  }
+
   const { data } = await supabase
     .from("Scripts")
     .select("*")
