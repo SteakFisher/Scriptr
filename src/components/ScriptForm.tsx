@@ -38,7 +38,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
       <DropdownMenu>
         <DropdownMenuTrigger
           className={
-            " border-2 border-cyan-800 px-2 py-2 text-gray-400 rounded-md ml-[90%] m-4 pt-1 pb-1 justify-center hover:border-cyan-500 hover:duration-200 hover:text-white"
+            " border-2 border-cyan-800 px-2 py-2 text-gray-400 rounded-md ml-[90%] m-5 pt-1 pb-1 justify-center hover:border-cyan-500 hover:duration-200 hover:text-white"
           }
         >
           History

@@ -29,7 +29,7 @@ export default function AddCollabs({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className={"absolute mt-16 ml-4"}>
+        <Button variant="outline" className={"absolute mt-16 ml-5"}>
           Add Collaborators
         </Button>
       </DialogTrigger>
