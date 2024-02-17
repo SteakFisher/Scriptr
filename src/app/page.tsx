@@ -13,7 +13,7 @@ function Logging() {
     if (searchParams.get("code")) {
       router.refresh();
     }
-  }, [router, searchParams]);
+  });
 
   const supabase = createClientComponentClient();
 
