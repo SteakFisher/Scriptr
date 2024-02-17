@@ -27,12 +27,7 @@ export default function AddCollabs({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className={
-            "absolute mt-20 ml-5 p-5 px-10 border-2 text-green-600 hover:border-green-600 hover:text-white"
-          }
-        >
+        <Button variant="outline" className={"absolute mt-20 ml-5"}>
           Add Collaborators
         </Button>
       </DialogTrigger>
