@@ -73,14 +73,14 @@ export default async function Dashboard() {
                   </p>
                 </div>
 
-                <div className="card-body p-6 bg-gradient-to-r from-gray-900 border-s-2 border-emerald-400 h-40  overflow-hidden hover:duration-200 group-hover:border-none group-hover:duration-200">
+                <div className="card-body p-6 bg-gradient-to-r from-gray-900 border-s-2 border-[#ED8D28] h-40  overflow-hidden hover:duration-200 group-hover:border-none group-hover:duration-200">
                   <p className="text-gray-700 mb-4 group-hover:text-white group-hover:duration-200">
                     {obj.Description}
                   </p>
                 </div>
 
                 <div className="card-footer bg-gradient-to-r from-gray-900 p-4  overflow-hidden">
-                  <button className="button text-xl group-hover:text-emerald-400 group-hover:duration-200">
+                  <button className="button text-xl group-hover:text-[#ED8D28] group-hover:duration-200">
                     <Link href={`/scripts/${key}`}>{obj.Title}</Link>
                   </button>
                 </div>
