@@ -18,19 +18,6 @@ export default async function DisplayScript({
     cookies: () => cookieStore,
   });
 
-  console.log(id);
-
-  const { data, error } = await supabase
-    .from("Scripts")
-    .select(`id, Title, Description, Edits (Content)`)
-    .eq("id", id);
-
-  if (error) {
-    return <div>Failed to load script</div>;
-  }
-
-  let input = "";
-
   let { data: users } = await supabase.from("Users").select("Author, Email");
 
   let emailList: { [key: string]: string } = {};
@@ -44,6 +31,17 @@ export default async function DisplayScript({
   }
 
   console.log(emailList);
+
+  console.log(id);
+
+  const { data, error } = await supabase
+    .from("Scripts")
+    .select(`id, Title, Description, Edits (Content)`)
+    .eq("id", id);
+
+  if (error) {
+    return <div>Failed to load script</div>;
+  }
 
   return (
     <>
