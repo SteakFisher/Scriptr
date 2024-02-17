@@ -57,9 +57,6 @@ export default async function Dashboard() {
                   <p className="text-sm text-gray-400">
                     Date: {obj.Created_at.split("T")[0]}{" "}
                   </p>
-                  <p className="text-sm text-gray-400">
-                    Time: {obj.Created_at.split("T")[1].split(".")[0]}
-                  </p>
                 </div>
 
                 <div className="card-body p-6 bg-gradient-to-r from-gray-900 border-s-2 border-emerald-400 h-40  overflow-hidden">
