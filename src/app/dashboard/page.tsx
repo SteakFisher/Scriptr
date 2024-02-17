@@ -44,6 +44,10 @@ export default async function Dashboard() {
       </div>
 
       {data?.map((obj) => {
+        if (!obj.Created_at) {
+          obj.Created_at = "errorT";
+        }
+
         return (
           <div key={obj.id} className={"flex items-start"}>
             <div className="card_3 w-full max-w-sm m-auto rounded-lg border-2 border-gray-900 hover:border-gray-700  duration-100  ">

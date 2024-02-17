@@ -6,10 +6,23 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "../../database.types";
 import { ScriptProps } from "@/types/ScriptTypes";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import React from "react";
+import { Label } from "@/components/ui/label";
 
 export default function ScriptForm({ script }: { script: ScriptProps }) {
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
+
   return (
     <div>
       <h1>New Script</h1>
@@ -50,12 +63,15 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
           onClick={async (e) => {
             e.preventDefault();
 
+            let user = await supabase.auth.getUser();
+
             let { data: scriptData } = await supabase
               .from("Scripts")
               .upsert({
                 id: script["id"],
                 Title: script["Title"],
                 Description: script["Description"],
+                EmailID: user.data.user?.email,
               })
               .select("id");
 
