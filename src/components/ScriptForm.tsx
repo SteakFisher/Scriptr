@@ -61,7 +61,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
           <br />
           <button
             className={
-              "flex bg-gray-700 mt-9 w-[90%] items-center justify-center rounded-3xl pt-2 pb-2"
+              "flex bg-gray-700 mt-7 w-[80%] items-center justify-center rounded-3xl pt-2 pb-2"
             }
             onClick={async (e) => {
               e.preventDefault();
@@ -107,41 +107,6 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
           defaultValue={script["Content"] ? script["Content"] : undefined}
         />
       </div>
-      <button
-        className={
-          "flex bg-gray-700 mt-9 justify-center items-center ml-[50%] pl-5 pr-5 pt-2 pb-2 rounded-3xl"
-        }
-        onClick={async (e) => {
-          e.preventDefault();
-
-          let user = await supabase.auth.getUser();
-
-          let { data: scriptData } = await supabase
-            .from("Scripts")
-            .upsert({
-              id: script["id"],
-              Title: script["Title"],
-              Description: script["Description"],
-              EmailID: user.data.user?.email,
-            })
-            .select("id");
-
-          if (!scriptData) {
-            console.log("Error creating script");
-            return;
-          }
-
-          await supabase.from("Edits").insert({
-            Content: script["Content"],
-            ScriptId: scriptData[0].id,
-          });
-
-          router.push(`/scripts/${scriptData[0].id}`);
-        }}
-        type="submit"
-      >
-        Save
-      </button>
     </div>
   );
 }
