@@ -31,7 +31,7 @@ export default function AddCollabs({
       <DialogTrigger asChild>
         <Button variant="outline">Add Collaborators</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] hover:border-l-2 hover:border-r-2 hover:border-safeclr">
+      <DialogContent className="sm:max-w-[425px] hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]">
         <DialogHeader>
           <DialogTitle
             className={"text-blue-300 underline decoration-blue-300"}
