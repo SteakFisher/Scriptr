@@ -26,7 +26,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
     <div>
       <h1
         className={
-          "flex justify-center items-center text-2xl mb-10 mt-3 bg-gradient-to-r from-gray-900 border-s-2 ml-5 mr-5 pt-2 pb-2 rounded-xl border-b-2 " +
+          "flex justify-center items-center text-2xl mb-3 mt-3 bg-gradient-to-r from-gray-900 border-s-2 ml-5 mr-5 pt-2 pb-2 rounded-xl border-b-2 " +
           "border-b-sky-200 "
         }
       >
@@ -35,7 +35,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
       <DropdownMenu>
         <DropdownMenuTrigger
           className={
-            " border-2 border-red-500 px-3 py-2 rounded-md flex-auto items-end"
+            " border-2 border-cyan-800 px-2 py-2 text-gray-400 rounded-md ml-[90%] m-4 pt-1 pb-1 justify-center hover:border-cyan-500 hover:duration-200 hover:text-white"
           }
         >
           History
@@ -124,7 +124,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
         </div>
         <Textarea
           className={
-            "flex w-[80%] bg-gray-900 hover:border-safeclr hover:bg-gray-800 ml-10 border-2 hover:duration-200"
+            "flex w-[79%] bg-gray-900 hover:border-safeclr hover:bg-gray-800 ml-10 border-2 hover:duration-200"
           }
           placeholder={"Content"}
           onChange={(e) => {
