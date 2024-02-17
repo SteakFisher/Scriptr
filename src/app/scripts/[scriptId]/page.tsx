@@ -43,6 +43,8 @@ export default async function DisplayScript({
 
   let Edits: DataItem[] = data[0].Edits;
 
+  console.log(new Date(Edits[0].Updated_at));
+
   // @ts-ignore
   Edits.sort((a, b) => new Date(b.Updated_at) - new Date(a.Updated_at));
 
@@ -58,7 +60,7 @@ export default async function DisplayScript({
               Description: data[0].Description,
               Content: Edits[0].Content,
             }}
-            save={false}
+            save={true}
             edits={Edits}
           />
         </div>
