@@ -7,8 +7,10 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { Database } from "../../database.types";
 import Link from "next/link";
+import React, { useState } from "react";
 
 export default function ScriptForm({ script }: { script: ScriptProps }) {
+  const [newScriptTitle, setNewScriptTitle] = useState("");
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
 
@@ -17,11 +19,12 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
       <h1
         className={
           "flex justify-center items-center text-2xl mb-10 mt-3 bg-gradient-to-r from-gray-900 border-s-2 ml-5 mr-5 pt-2 pb-2 rounded-xl border-b-2 " +
-          "border-b-sky-200"
+          "border-b-sky-200 "
         }
       >
-        New Script
+        {newScriptTitle.length > 0 ? newScriptTitle : "New Script"}
       </h1>
+
       <div className={"flex flex-row h-[80%] ml-1/8"}>
         <div className={"flex flex-col pb-[25%] ml-5"}>
           <Input
@@ -31,10 +34,12 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
             placeholder={"Title"}
             type="text"
             onChange={(e) => {
-              script["Title"] = e.target.value;
+              //script["Title"] = e.target.value;
+              setNewScriptTitle(e.target.value);
             }}
             defaultValue={script["Title"] ? script["Title"] : undefined}
           />
+
           <br />
           <Textarea
             className={
