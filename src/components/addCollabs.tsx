@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import React from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "../../database.types";
+import { createSupabaseClient } from "@supabase/auth-helpers-shared";
 
 export default function AddCollabs({
   emailList,
@@ -24,6 +25,7 @@ export default function AddCollabs({
   scriptId: string;
 }) {
   let input = "";
+  const supabase = createClientComponentClient<Database>();
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -54,18 +56,24 @@ export default function AddCollabs({
         <DialogFooter>
           <Button
             type="submit"
-            onClick={() => {
+            onClick={async () => {
               let emails = input.split(",");
               let newEmails: object[] = [];
               emails.map((email) => {
-                email = email.toLowerCase();
-                email = email.trimStart();
-                email = email.trimEnd();
+                let newemail = email.toLowerCase();
+                newemail = email.trimStart();
+                newemail = email.trimEnd();
                 newEmails.push({
                   ScriptId: scriptId,
-                  UserId: emailList[email],
+                  UserId: emailList[newemail],
                 });
               });
+
+              console.log(newEmails);
+
+              let { data } = await supabase.from("Sharing").insert(newEmails);
+
+              console.log(data);
             }}
           >
             Save changes
