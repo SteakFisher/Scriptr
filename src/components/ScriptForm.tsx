@@ -49,12 +49,12 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <div>
-              <h1 className={"text-xl"}>Title</h1>
-              <h3>Date:</h3>
-              <h3>TIme:</h3>
-              <p>
+              <h1 className={"text-xl text-amber-800 font-bold"}>Title</h1>
+              <h3 className={"text-blue-300"}>Date:</h3>
+              <h3 className={"text-blue-300"}>TIme:</h3>
+              <p className={"text-white"}>
                 This contains the description of the Previous version of the
-                Script heloogtdbdxrgvtsdhdsgfcgvfd
+                Script
               </p>
             </div>
           </DropdownMenuItem>
