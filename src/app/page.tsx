@@ -19,7 +19,8 @@ export default function Login() {
     <div className={"flex flex-col h-screen justify-center items-center"}>
       <div
         className={
-          "mainbox flex flex-col items-center rounded-3xl bg-[#11485F] w-1/4 h-50 justify-between"
+          "mainbox flex flex-col items-center rounded-3xl opacity-60 hover:opacity-100 hover:bg-safeclr p-10 w-auto h-auto justify-between border-4 " +
+          "hover:border-l-emerald-700 hover:border-r-emerald-700 duration-200  "
         }
       >
         <div
@@ -30,7 +31,7 @@ export default function Login() {
           Scriptr
         </div>
         <button
-          className={"pb-5 text-5xl"}
+          className={"pb-5 text-5xl hover:scale-105 duration-200"}
           onClick={async (e) => {
             const { data } = await supabase.auth.signInWithOAuth({
               provider: "google",
