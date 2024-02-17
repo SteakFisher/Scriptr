@@ -63,7 +63,7 @@ export default async function Dashboard() {
             <div
               key={obj.id}
               className={
-                "ml-16 mt-10 hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f] hover:rounded-xl"
+                "group ml-16 mt-10 hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f] hover:rounded-xl hover > card"
               }
             >
               <div className="card_3 w-96 max-w-sm rounded-lg border-2 border-gray-900 hover:scale-105  duration-100 m-4">
@@ -73,7 +73,7 @@ export default async function Dashboard() {
                   </p>
                 </div>
 
-                <div className="card-body p-6 bg-gradient-to-r from-gray-900 border-s-2 border-emerald-400 h-40  overflow-hidden hover:border-none hover:duration-200">
+                <div className="card-body p-6 bg-gradient-to-r from-gray-900 border-s-2 border-emerald-400 h-40  overflow-hidden hover:duration-200 group-hover:border-none group-hover:duration-200">
                   <p className="text-gray-700 mb-4">{obj.Description}</p>
                 </div>
 
