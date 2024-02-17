@@ -47,6 +47,7 @@ export default async function Dashboard() {
           if (!obj.Created_at) {
             obj.Created_at = "errorT";
           }
+          let key = obj.id;
           return (
             <div key={obj.id} className={"ml-16 mt-10"}>
               <div className="card_3 w-96 max-w-sm rounded-lg border-2 border-gray-900 hover:border-gray-700 hover:scale-105  duration-100 m-4 ">
@@ -64,7 +65,9 @@ export default async function Dashboard() {
                 </div>
 
                 <div className="card-footer bg-gradient-to-r from-gray-900 p-4">
-                  <button className="button text-xl">{obj.Title}</button>
+                  <button className="button text-xl">
+                    <Link href={`/scripts/${key}`}>{obj.Title}</Link>
+                  </button>
                 </div>
               </div>
             </div>
