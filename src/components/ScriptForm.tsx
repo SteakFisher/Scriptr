@@ -32,7 +32,6 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
       >
         {newScriptTitle ? newScriptTitle : "New Script"}
       </h1>
-
       {/*History*/}
 
       <DropdownMenu>
@@ -44,19 +43,23 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
           History
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className={"w-auto"}>
+        <DropdownMenuContent
+          className={"w-96 mr-6 mt-4 border-2 border-cyan-500"}
+        >
           <DropdownMenuLabel>Previous Changes</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <div>
-              <h1 className={"text-xl text-amber-800 font-bold"}>Title</h1>
-              <h3 className={"text-blue-300"}>Date:</h3>
-              <h3 className={"text-blue-300"}>TIme:</h3>
-              <p className={"text-white"}>
-                This contains the description of the Previous version of the
-                Script
-              </p>
-            </div>
+            <Link href={"/dashboard"}>
+              <div className={"border-2 border-gray-800 p-4"}>
+                <h1 className={"text-xl text-orange-500 font-bold "}>Title</h1>
+                <h3 className={"text-blue-300"}>Date: </h3>
+                <h3 className={"text-blue-300"}>TIme: </h3>
+                <p className={"text-white"}>
+                  This contains the description of the Previous version of the
+                  Script
+                </p>
+              </div>
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
