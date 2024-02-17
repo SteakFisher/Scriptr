@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function ScriptForm({ script }: { script: ScriptProps }) {
-  const [newScriptTitle, setNewScriptTitle] = useState("");
+  const [newScriptTitle, setNewScriptTitle] = useState(script["Title"]);
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
 
@@ -30,7 +30,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
           "border-b-sky-200 "
         }
       >
-        {newScriptTitle.length > 0 ? newScriptTitle : "New Script"}
+        {newScriptTitle ? newScriptTitle : "New Script"}
       </h1>
 
       {/*History*/}
@@ -66,13 +66,14 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
             className={
               "w-[90%] bg-gray-900 hover:border-safeclr hover:bg-gray-800 border-2 hover:duration-200"
             }
-            placeholder={"Title"}
+            // placeholder={"Title"}
             type="text"
             onChange={(e) => {
-              //script["Title"] = e.target.value;
-              setNewScriptTitle(e.target.value);
+              script["Title"] = e.target.value;
+              setNewScriptTitle(newScriptTitle);
             }}
-            defaultValue={script["Title"] ? script["Title"] : undefined}
+            placeholder={script["Title"] ? undefined : "Title"}
+            value={script["Title"] ? script["Title"] : undefined}
           />
 
           <br />
@@ -80,13 +81,11 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
             className={
               "w-[90%] pb-64 bg-gray-900 hover:border-safeclr hover:bg-gray-800 pt-4 pl-04 border-2 hover:duration-200"
             }
-            placeholder={"Description"}
             onChange={(e) => {
               script["Description"] = e.target.value;
             }}
-            defaultValue={
-              script["Description"] ? script["Description"] : undefined
-            }
+            placeholder={script["Description"] ? undefined : "Description"}
+            value={script["Description"] ? script["Description"] : undefined}
           />
           <br />
           <button

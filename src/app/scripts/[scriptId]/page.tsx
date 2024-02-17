@@ -8,6 +8,11 @@ import ScriptForm from "@/components/ScriptForm";
 import React from "react";
 import AddCollabs from "@/components/addCollabs";
 
+interface DataItem {
+  Content: string;
+  Updated_at: string;
+}
+
 export default async function DisplayScript({
   params: { scriptId: id },
 }: {
@@ -30,18 +35,19 @@ export default async function DisplayScript({
     });
   }
 
-  console.log(emailList);
-
-  console.log(id);
-
   const { data, error } = await supabase
     .from("Scripts")
-    .select(`id, Title, Description, Edits (Content)`)
+    .select(`id, Title, Description, Edits (Content, Updated_at)`)
     .eq("id", id);
 
   if (error) {
     return <div>Failed to load script</div>;
   }
+
+  let Edits: DataItem[] = data[0].Edits;
+
+  // @ts-ignore
+  Edits.sort((a, b) => new Date(b.Updated_at) - new Date(a.Updated_at));
 
   return (
     <>
@@ -53,7 +59,7 @@ export default async function DisplayScript({
               id: data[0].id,
               Title: data[0].Title,
               Description: data[0].Description,
-              Content: data[0].Edits[0].Content,
+              Content: Edits[0].Content,
             }}
           />
         </div>
