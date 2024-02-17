@@ -21,16 +21,16 @@ function Logging() {
     <div className={"flex flex-col h-screen justify-center items-center"}>
       <div
         className={
-          "mainbox flex flex-col items-center rounded-3xl opacity-60 hover:opacity-100 hover:bg-safeclr p-10 w-auto h-auto justify-between border-4 " +
-          "hover:border-l-emerald-700 hover:border-r-emerald-700 duration-200  "
+          "mainbox flex flex-col items-center rounded-3xl opacity-100 bg-gray-900 p-10 w-auto h-auto justify-between border-2 " +
+          "hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f] hover:scale-105 duration-200"
         }
       >
-        <div
-          className={
-            "pb-28 pt-5 heading text-4xl fon font-family['Julius Sans One'] flex"
-          }
-        >
-          Scriptr
+        <div className={"flex pb-28 pt-5 heading text-4xl "}>
+          <span className={"text-3xl font-thin text-blue-300 "}>Script</span>
+
+          <span className={"flex font-serif italic text-4xl text-blue-300 "}>
+            R.
+          </span>
         </div>
         <button
           className={"pb-5 text-5xl hover:scale-105 duration-200"}
