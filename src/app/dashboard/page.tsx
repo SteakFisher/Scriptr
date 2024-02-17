@@ -14,7 +14,6 @@ export default async function Dashboard() {
     .from("Scripts")
     .select("*")
     .order("Created_at", { ascending: false });
-  console.log(data);
 
   return (
     <div>
@@ -44,46 +43,38 @@ export default async function Dashboard() {
         <p className={"text-3xl"}> Edits </p>
       </div>
 
-      <div className={"CaRds flex justify-between"}>
-        <div className="card_1 w-full max-w-sm m-auto rounded-lg border-2 border-gray-900 hover:border-gray-700  duration-100  ">
-          <div className="card-header bg-gray-900 p-4">
-            <p className="text-sm text-gray-400">Date: </p>
-            <p className="text-sm text-gray-400">Time: </p>
-          </div>
-          <div className="card-body p-6 bg-gradient-to-r from-gray-900 h-auto border-s-2 border-amber-200">
-            <p className="text-gray-700 mb-4">Description</p>
-          </div>
-          <div className="card-footer bg-gradient-to-r from-gray-900 p-4">
-            <button className="button text-xl">Title</button>
-          </div>
-        </div>
+      {data?.map((obj) => {
+        return (
+          <div key={obj.id} className={"flex items-start"}>
+            <div className="card_3 w-full max-w-sm m-auto rounded-lg border-2 border-gray-900 hover:border-gray-700  duration-100  ">
+              <div className="card-header bg-gray-900 p-4">
+                <p className="text-sm text-gray-400">Date: </p>
+                <div>
+                  <h1>{obj.Created_at.split("T")[0]}</h1>
+                </div>
+                <p className="text-sm text-gray-400">
+                  Time:
+                  <div>
+                    <h1>{obj.Created_at.split("T")[1].split(".")[0]}</h1>
+                  </div>
+                </p>
+              </div>
 
-        <div className="card_2 w-full max-w-sm m-auto rounded-lg border-2 border-gray-900 hover:border-gray-700  duration-100  ">
-          <div className="card-header bg-gray-900 p-4">
-            <p className="text-sm text-gray-400">Date: </p>
-            <p className="text-sm text-gray-400">Time: </p>
-          </div>
-          <div className="card-body p-6 bg-gradient-to-r from-gray-900 h-auto border-s-2 border-teal-400">
-            <p className="text-gray-700 mb-4">Description</p>
-          </div>
-          <div className="card-footer bg-gradient-to-r from-gray-900 p-4">
-            <button className="button text-xl">Title</button>
-          </div>
-        </div>
+              <div className="card-body p-6 bg-gradient-to-r from-gray-900 h-auto border-s-2 border-emerald-400">
+                <p className="text-gray-700 mb-4">
+                  <p>{obj.Description}</p>
+                </p>
+              </div>
 
-        <div className="card_3 w-full max-w-sm m-auto rounded-lg border-2 border-gray-900 hover:border-gray-700  duration-100  ">
-          <div className="card-header bg-gray-900 p-4">
-            <p className="text-sm text-gray-400">Date: </p>
-            <p className="text-sm text-gray-400">Time: </p>
+              <div className="card-footer bg-gradient-to-r from-gray-900 p-4">
+                <button className="button text-xl">
+                  <p>{obj.Title}</p>
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="card-body p-6 bg-gradient-to-r from-gray-900 h-auto border-s-2 border-emerald-400">
-            <p className="text-gray-700 mb-4">Description</p>
-          </div>
-          <div className="card-footer bg-gradient-to-r from-gray-900 p-4">
-            <button className="button text-xl">Title</button>
-          </div>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 }
