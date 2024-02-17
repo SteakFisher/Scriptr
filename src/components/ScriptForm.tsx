@@ -17,7 +17,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export default function ScriptForm({ script }: { script: ScriptProps }) {
+export default function ScriptForm({
+  script,
+  save,
+}: {
+  script: ScriptProps;
+  save: boolean;
+}) {
   const [newScriptTitle, setNewScriptTitle] = useState(script["Title"]);
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
@@ -91,42 +97,44 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
             value={script["Description"] ? script["Description"] : undefined}
           />
           <br />
-          <button
-            className={
-              "flex bg-gray-700 mt-5 w-[90%] items-center justify-center rounded-3xl pt-2 pb-2 hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]"
-            }
-            onClick={async (e) => {
-              e.preventDefault();
-
-              let user = await supabase.auth.getUser();
-
-              let { data: scriptData } = await supabase
-                .from("Scripts")
-                .upsert({
-                  id: script["id"],
-                  Title: script["Title"],
-                  Description: script["Description"],
-                  EmailID: user.data.user?.email,
-                })
-                .select("id");
-
-              if (!scriptData) {
-                console.log("Error creating script");
-                return;
+          {save ? (
+            <button
+              className={
+                "flex bg-gray-700 mt-5 w-[90%] items-center justify-center rounded-3xl pt-2 pb-2 hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]"
               }
+              onClick={async (e) => {
+                e.preventDefault();
 
-              await supabase.from("Edits").insert({
-                Content: script["Content"],
-                // @ts-ignore
-                ScriptId: scriptData[0].id,
-              });
+                let user = await supabase.auth.getUser();
 
-              router.push(`/scripts/${scriptData[0].id}`);
-            }}
-            type="submit"
-          >
-            Save
-          </button>
+                let { data: scriptData } = await supabase
+                  .from("Scripts")
+                  .upsert({
+                    id: script["id"],
+                    Title: script["Title"],
+                    Description: script["Description"],
+                    EmailID: user.data.user?.email,
+                  })
+                  .select("id");
+
+                if (!scriptData) {
+                  console.log("Error creating script");
+                  return;
+                }
+
+                await supabase.from("Edits").insert({
+                  Content: script["Content"],
+                  // @ts-ignore
+                  ScriptId: scriptData[0].id,
+                });
+
+                router.push(`/scripts/${scriptData[0].id}`);
+              }}
+              type="submit"
+            >
+              Save
+            </button>
+          ) : null}
           <button
             className={
               "flex bg-gray-700 mt-5 w-[90%] items-center justify-center rounded-3xl pt-2 pb-2 hover:duration-200 hover:border-red-500 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#ED8D28,0_0_15px_#ED8D28,0_0_30px_#ED8D28]"
