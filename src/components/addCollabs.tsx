@@ -13,8 +13,16 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import React from "react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Database } from "../../database.types";
 
-export default function AddCollabs() {
+export default function AddCollabs({
+  emailList,
+  scriptId,
+}: {
+  emailList: { [key: string]: string };
+  scriptId: string;
+}) {
   let input = "";
   return (
     <Dialog>
@@ -48,12 +56,15 @@ export default function AddCollabs() {
             type="submit"
             onClick={() => {
               let emails = input.split(",");
-              let newEmails: string[] = [];
+              let newEmails: object[] = [];
               emails.map((email) => {
                 email = email.toLowerCase();
                 email = email.trimStart();
                 email = email.trimEnd();
-                newEmails.push(email);
+                newEmails.push({
+                  ScriptId: scriptId,
+                  UserId: emailList[email],
+                });
               });
             }}
           >

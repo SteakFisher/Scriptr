@@ -1,4 +1,7 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import {
+  createClientComponentClient,
+  createServerComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { Database } from "../../../../database.types";
 import ScriptForm from "@/components/ScriptForm";
@@ -28,11 +31,25 @@ export default async function DisplayScript({
 
   let input = "";
 
+  let { data: users } = await supabase.from("Users").select("Author, Email");
+
+  let emailList: { [key: string]: string } = {};
+
+  if (users) {
+    users.map((user) => {
+      if (user.Email && user.Author) {
+        emailList[user.Email] = user.Author;
+      }
+    });
+  }
+
+  console.log(emailList);
+
   return (
     <>
       {data?.length > 0 ? (
         <div>
-          <AddCollabs />
+          <AddCollabs emailList={emailList} scriptId={data[0].id} />
           <ScriptForm
             script={{
               id: data[0].id,
@@ -43,7 +60,7 @@ export default async function DisplayScript({
           />
         </div>
       ) : (
-        <div>You don't have access</div>
+        <div>You dont have access</div>
       )}
     </>
   );

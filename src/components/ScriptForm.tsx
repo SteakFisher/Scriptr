@@ -75,6 +75,14 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
               })
               .select("id");
 
+            if (user.data.user?.email) {
+              let { data: users } = await supabase
+                .from("Users")
+                .upsert({ Email: user.data.user?.email })
+                .select("*");
+              console.log("users", users);
+            }
+
             if (!scriptData) {
               console.log("Error creating script");
               return;
@@ -82,7 +90,6 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
 
             await supabase.from("Edits").insert({
               Content: script["Content"],
-              // @ts-ignore
               ScriptId: scriptData[0].id,
             });
 
