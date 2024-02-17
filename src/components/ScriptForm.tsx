@@ -2,22 +2,11 @@
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { Database } from "../../database.types";
 import { ScriptProps } from "@/types/ScriptTypes";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import React from "react";
-import { Label } from "@/components/ui/label";
+import { Database } from "../../database.types";
+import Link from "next/link";
 
 export default function ScriptForm({ script }: { script: ScriptProps }) {
   const supabase = createClientComponentClient<Database>();
@@ -27,13 +16,14 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
     <div>
       <h1
         className={
-          "flex justify-center items-center text-2xl mb-10 mt-3 bg-gray-900 ml-5 mr-5 pt-2 pb-2 rounded-xl border-2"
+          "flex justify-center items-center text-2xl mb-10 mt-3 bg-gradient-to-r from-gray-900 border-s-2 ml-5 mr-5 pt-2 pb-2 rounded-xl border-b-2 " +
+          "border-b-sky-200"
         }
       >
         New Script
       </h1>
       <div className={"flex flex-row h-[80%] ml-1/8"}>
-        <div className={"flex flex-col pb-[25%] ml-3"}>
+        <div className={"flex flex-col pb-[25%] ml-5"}>
           <Input
             className={
               "w-[90%] bg-gray-900 hover:border-safeclr hover:bg-gray-800 border-2 hover:duration-200"
@@ -61,7 +51,7 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
           <br />
           <button
             className={
-              "flex bg-gray-700 mt-9 w-[90%] items-center justify-center rounded-3xl pt-2 pb-2 hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]"
+              "flex bg-gray-700 mt-5 w-[90%] items-center justify-center rounded-3xl pt-2 pb-2 hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]"
             }
             onClick={async (e) => {
               e.preventDefault();
@@ -94,6 +84,13 @@ export default function ScriptForm({ script }: { script: ScriptProps }) {
             type="submit"
           >
             Save
+          </button>
+          <button
+            className={
+              "flex bg-gray-700 mt-5 w-[90%] items-center justify-center rounded-3xl pt-2 pb-2 hover:duration-200 hover:border-red-500 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#ED8D28,0_0_15px_#ED8D28,0_0_30px_#ED8D28]"
+            }
+          >
+            <Link href={"/dashboard"}>Dashboard</Link>
           </button>
         </div>
         <Textarea
