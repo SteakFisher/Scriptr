@@ -49,8 +49,8 @@ export default async function Dashboard() {
         </div>
       </div>
       {/*Title*/}
-      <div className={"flex px-20 py-4"}>
-        <p className={"text-3xl"}> Edits </p>
+      <div className={"flex px-20 py-4 mt-6"}>
+        <p className={"text-3xl "}> Script Templates </p>
       </div>
       {/*Templates*/}
       <div className={"flex flex-wrap"}>
@@ -79,7 +79,7 @@ export default async function Dashboard() {
                   </p>
                 </div>
 
-                <div className="card-footer bg-gradient-to-r from-gray-900 p-4  overflow-hidden">
+                <div className="card-footer bg-gradient-to-r from-gray-900 p-4  overflow-hidden border-2 hover:border-b-gray-600">
                   <button className="button text-xl group-hover:text-[#ED8D28] group-hover:duration-200">
                     <Link href={`/scripts/${key}`}>{obj.Title}</Link>
                   </button>
