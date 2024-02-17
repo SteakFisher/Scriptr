@@ -19,7 +19,7 @@ import {
 
 export default function ScriptForm({
   script,
-  save,
+  save = false,
 }: {
   script: ScriptProps;
   save: boolean;
