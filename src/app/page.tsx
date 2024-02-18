@@ -22,7 +22,7 @@ function Logging() {
       <div
         className={
           "mainbox flex flex-col items-center rounded-3xl opacity-100 bg-gray-900 p-10 w-auto h-auto justify-between border-2 " +
-          "hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f] hover:scale-105 duration-200"
+          "hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#e65100,0_0_15px_#e65100,0_0_30px_#e65100] hover:scale-105 duration-200"
         }
       >
         <div className={"flex pb-28 pt-5 heading text-4xl "}>
