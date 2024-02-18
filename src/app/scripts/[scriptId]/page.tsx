@@ -6,6 +6,7 @@ import React from "react";
 import AddCollabs from "@/components/addCollabs";
 
 interface DataItem {
+  id: string;
   Content: string;
   Updated_at: string;
 }

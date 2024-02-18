@@ -36,6 +36,10 @@ export default function ScriptForm({
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  console.log("yea", edits);
+
   return (
     <div>
       <h1
@@ -109,12 +113,13 @@ export default function ScriptForm({
           <br />
           {save ? (
             <button
+              disabled={isLoading}
               className={
                 "flex bg-gray-700 mt-5 w-[90%] items-center justify-center rounded-3xl pt-2 pb-2 hover:duration-200 hover:border-sky-200 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]"
               }
               onClick={async (e) => {
                 e.preventDefault();
-
+                setIsLoading(true);
                 let user = await supabase.auth.getUser();
 
                 let { data: scriptData } = await supabase
@@ -137,6 +142,8 @@ export default function ScriptForm({
                   // @ts-ignore
                   ScriptId: scriptData[0].id,
                 });
+
+                setIsLoading(false);
 
                 router.push(`/scripts/${scriptData[0].id}`);
               }}
