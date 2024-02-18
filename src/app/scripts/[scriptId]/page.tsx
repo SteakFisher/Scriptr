@@ -34,7 +34,7 @@ export default async function DisplayScript({
 
   const { data, error } = await supabase
     .from("Scripts")
-    .select(`id, Title, Description, Edits (Content, Updated_at)`)
+    .select(`id, Title, Description, Edits (id, Content, Updated_at)`)
     .eq("id", id);
 
   if (error) {

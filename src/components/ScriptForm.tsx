@@ -20,6 +20,7 @@ import {
 type Edit = {
   Content: string;
   Updated_at: string;
+  id: string;
 };
 
 export default function ScriptForm({
@@ -64,7 +65,7 @@ export default function ScriptForm({
             {edits.map((edit) => {
               return (
                 <DropdownMenuItem key={edit.Updated_at}>
-                  <Link href={"/dashboard"}>
+                  <Link href={`/scripts/history/${edit.id}`}>
                     <div className={"border-2 border-gray-800 p-4"}>
                       <h3 className={"text-blue-300"}>
                         Date: {edit.Updated_at.split("T")[0]}
