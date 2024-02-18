@@ -41,9 +41,11 @@ export default async function DisplayScript({
     return <div>Failed to load script</div>;
   }
 
-  let Edits: DataItem[] = data[0].Edits;
+  if (data.length == 0) {
+    return <h1>No Access</h1>;
+  }
 
-  console.log(new Date(Edits[0].Updated_at));
+  let Edits: DataItem[] = data[0].Edits;
 
   // @ts-ignore
   Edits.sort((a, b) => new Date(b.Updated_at) - new Date(a.Updated_at));
