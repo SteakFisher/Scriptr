@@ -29,8 +29,10 @@ export default async function Dashboard() {
       {/*Header*/}
       <div className="flex justify-between mt-6 ml-4 mr-4 rounded-md bg-gray-900 px-10 py-6">
         <div className={"flex"}>
-          <span className={"text-3xl font-thin"}>Script</span>
-          <span className={"flex font-serif italic text-4xl"}>R.</span>
+          <span className={"text-3xl font-thin text-blue-300"}>Script</span>
+          <span className={"flex font-serif italic text-4xl text-blue-300"}>
+            R.
+          </span>
         </div>
 
         <div className={"flex ml-auto"}>
