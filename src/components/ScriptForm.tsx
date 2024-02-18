@@ -66,7 +66,7 @@ export default function ScriptForm({
               return (
                 <DropdownMenuItem key={edit.Updated_at}>
                   <Link href={`/scripts/history/${edit.id}`}>
-                    <div className={"border-2 border-gray-800 p-4"}>
+                    <div className={"border-2 border-gray-800 pr-32 pt-2 pb-2 pl-2 hover:border-gray-700 hover:duration-200 hover:scale-105"}>
                       <h3 className={"text-blue-300"}>
                         Date: {edit.Updated_at.split("T")[0]}
                       </h3>
